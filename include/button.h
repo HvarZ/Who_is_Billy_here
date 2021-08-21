@@ -4,19 +4,19 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 
-class Button {
+class Button final {
 private:
     sf::RectangleShape button_;
     sf::Text text_;
 public:
     Button() = default;
 
-    Button(std::string&& text, sf::Vector2&& size, sf::Color&& textColor, unsigned int&& charSize) {
-        text_.setString(std::move(text));
-        text_.setFillColor(std::move(textColor));
-        text_.setCharacterSize(std::move(charSize));
-
-        button_.setSize(std::move(size));
+    Button(const std::string& text, const sf::Vector2<float>& size, const sf::Color& textColor = sf::Color::White, unsigned int&& charSize = 30) {
+        text_.setString(text);
+        text_.setFillColor(textColor);
+        text_.setCharacterSize(charSize);
+        button_.setPosition(sf::Vector2f(100, 200));
+        button_.setSize(size);
 
     }
 
@@ -24,13 +24,36 @@ public:
         text_.setFont(font);
     }
 
-    void SetFont(sf::Font&& font) noexcept {
-        text_.setFont(std::move(font));
+    void setColor(const sf::Color& color) noexcept {
+        button_.setFillColor(color);
     }
+
 
     void Draw(sf::RenderWindow& window) const noexcept {
         window.draw(button_);
         window.draw(text_);
+    }
+
+
+    void setSize(const float coefficient) {
+        button_.setSize(sf::Vector2<float>(2 * button_.getSize().x, 2 * button_.getSize().y));
+    }
+
+    auto IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
+        auto mouseX = sf::Mouse::getPosition(window).x;
+        auto mouseY = sf::Mouse::getPosition(window).y;
+
+        auto btnPosX = button_.getPosition().x;
+        auto btnPosY = button_.getPosition().y;
+
+        auto btnXPosWidth = btnPosX + button_.getLocalBounds().width;
+        auto btnYPosHeight = btnPosY + button_.getLocalBounds().height;
+
+        if (mouseX < btnXPosWidth && mouseX > btnPosX && mouseY < btnYPosHeight && mouseY > btnPosY) {
+            return true;
+        }
+
+        return false;
     }
 
 };
