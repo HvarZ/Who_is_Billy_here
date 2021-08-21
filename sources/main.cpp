@@ -3,8 +3,13 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Who's Billy here!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+
+    sf::Font font;
+    font.loadFromFile("../fonts/Pixelio_true.otf");
+    sf::Text testText("Hello, I im Billy", font);
+    testText.setFillColor(sf::Color::White);
+    testText.setCharacterSize(50);
+    testText.setPosition(960 - static_cast<float>(8 * testText.getString().getSize()), 540);
 
     while (window.isOpen())
     {
@@ -16,7 +21,7 @@ int main()
         }
 
         window.clear();
-        window.draw(shape);
+        window.draw(testText);
         window.display();
     }
 
