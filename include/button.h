@@ -8,15 +8,25 @@ class Button final {
 private:
     sf::RectangleShape button_;
     sf::Text text_;
+    sf::Font font_;
 public:
     Button() = default;
 
-    Button(const std::string& text, const sf::Vector2<float>& size, const sf::Color& textColor = sf::Color::White, unsigned int&& charSize = 30) {
+    Button(const std::string& text, const sf::Vector2<float>& buttonPosition,
+           const sf::Vector2<float>& buttonSize, const sf::Color& textColor = sf::Color::Green,
+           unsigned int&& charSize = 50) {
         text_.setString(text);
+
+        font_.loadFromFile("../fonts/Pixelio_true.otf");
+        text_.setFont(font_);
         text_.setFillColor(textColor);
         text_.setCharacterSize(charSize);
-        button_.setPosition(sf::Vector2f(100, 200));
-        button_.setSize(size);
+
+        button_.setPosition(buttonPosition);
+        button_.setSize(buttonSize);
+
+        text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
+                          button_.getPosition().y + button_.getSize().y / 2 - text_.getLocalBounds().height / 2);
 
     }
 
@@ -35,8 +45,8 @@ public:
     }
 
 
-    void setSize(const float coefficient) {
-        button_.setSize(sf::Vector2<float>(2 * button_.getSize().x, 2 * button_.getSize().y));
+    void setSize(const sf::Vector2<float>& newSize) {
+        button_.setSize(newSize);
     }
 
     auto IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
