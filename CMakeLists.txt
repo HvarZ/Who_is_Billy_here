@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
         sources/main.cpp
+        sources/main_menu_button.cpp
         )
 
 set(HEADERS
