@@ -8,7 +8,7 @@ set(SOURCES
         )
 
 set(HEADERS
-        include/button.h
+        include/main_menu_button.h
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
