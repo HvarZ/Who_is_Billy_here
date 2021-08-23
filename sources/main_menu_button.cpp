@@ -33,6 +33,9 @@
 }
 
 [[maybe_unused]] void MainMenuButton::MagnifyingAnimation() noexcept {
+    if (button_.getSize() == increasedSize_){
+        return;
+    }
     sf::Vector2<float> difference = increasedSize_ - button_.getSize();
     button_.setSize(increasedSize_);
     button_.setPosition(button_.getPosition().x - difference.x / 2,
@@ -43,6 +46,9 @@
 }
 
 [[maybe_unused]] void MainMenuButton::ShrinkingAnimation() noexcept {
+    if (button_.getSize() == normalSize_) {
+        return;
+    }
     sf::Vector2<float> difference = button_.getSize() - normalSize_;
     button_.setSize(normalSize_);
     button_.setPosition(button_.getPosition().x + difference.x / 2,
@@ -64,18 +70,11 @@
 }
 
 [[maybe_unused]] auto MainMenuButton::IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
-    auto mouseX = sf::Mouse::getPosition(window).x;
-    auto mouseY = sf::Mouse::getPosition(window).y;
-
-    auto btnPosX = button_.getPosition().x;
-    auto btnPosY = button_.getPosition().y;
-
-    auto btnXPosWidth = btnPosX + button_.getLocalBounds().width;
-    auto btnYPosHeight = btnPosY + button_.getLocalBounds().height;
-
-    if (mouseX < btnXPosWidth && mouseX > btnPosX && mouseY < btnYPosHeight && mouseY > btnPosY) {
+    if (sf::Mouse::getPosition(window).x < button_.getPosition().x + button_.getLocalBounds().width &&
+        sf::Mouse::getPosition(window).x > button_.getPosition().x &&
+        sf::Mouse::getPosition(window).y < button_.getPosition().y + button_.getLocalBounds().height &&
+        sf::Mouse::getPosition(window).y > button_.getPosition().y) {
         return true;
     }
-
     return false;
 }
