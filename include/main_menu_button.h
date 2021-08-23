@@ -1,6 +1,8 @@
 #ifndef WHO_IS_BILLY_HERE_MAIN_MENU_BUTTON_H
 #define WHO_IS_BILLY_HERE_MAIN_MENU_BUTTON_H
 
+#pragma once
+
 #include <SFML/Graphics.hpp>
 #include <utility>
 
@@ -21,7 +23,7 @@ private:
 public:
     // Constructors
     MainMenuButton() = default;
-    [[maybe_unused]] MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
+    [[maybe_unused]] explicit MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
            const sf::Vector2<float>& buttonSize, const sf::Color& textColor = sf::Color::Green,
            unsigned int charSize = 50);
 
