@@ -16,6 +16,17 @@ void MainMenu::DrawButtons(sf::RenderWindow& window) const noexcept {
     }
 }
 
+void MainMenu::MagnifyButton(sf::RenderWindow& window) noexcept {
+    for (auto& button : buttons_) {
+        if (button.IsOverMouse(window)) {
+            button.MagnifyingAnimation();
+        }
+        else {
+            button.ShrinkingAnimation();
+        }
+    }
+}
+
 void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 }
