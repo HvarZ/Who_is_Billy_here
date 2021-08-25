@@ -13,6 +13,7 @@ private:
     sf::RectangleShape button_;
     sf::Text text_;
 
+    sf::Texture frame_;
     sf::Font font_;
 
     sf::Vector2<float> increasedSize_;
@@ -20,21 +21,19 @@ private:
 
     const unsigned int increasedCharSize_ = 60;
     const unsigned int normalCharSize_ = 50;
+
+    bool isMagnifying = false;
 public:
     // Constructors
     MainMenuButton() = default;
     [[maybe_unused]] explicit MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
-           const sf::Vector2<float>& buttonSize, const sf::Color& textColor = sf::Color::Green,
+           const sf::Vector2<float>& buttonSize, const sf::Color& textColor = sf::Color::White,
            unsigned int charSize = 50);
 
     // Methods
-    [[maybe_unused]] void SetFont(const sf::Font& font) noexcept;
-    [[maybe_unused]] void SetColor(const sf::Color& color) noexcept;
-    [[maybe_unused]] void SetPosition(const sf::Vector2<float>& newPosition) noexcept;
     [[maybe_unused]] void MagnifyingAnimation() noexcept;
     [[maybe_unused]] void ShrinkingAnimation() noexcept;
     [[maybe_unused]] void Draw(sf::RenderWindow& window) const noexcept;
-    [[maybe_unused]] void SetSize(const sf::Vector2<float>& newSize) noexcept;
     [[maybe_unused]] auto IsOverMouse(sf::RenderWindow& window) const noexcept -> bool;
 };
 

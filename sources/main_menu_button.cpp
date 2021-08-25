@@ -2,38 +2,30 @@
 
 [[maybe_unused]] MainMenuButton::MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
                const sf::Vector2<float>& buttonSize, const sf::Color& textColor,
-               unsigned int charSize) {
-    text_.setString(text);
-
+               unsigned int charSize) : isMagnifying(false) {
     font_.loadFromFile("../fonts/Pixelio_true.otf");
+    frame_.loadFromFile("../textures/main_menu_textures/frame_black_background.png");
+
+    text_.setString(text);
     text_.setFont(font_);
     text_.setFillColor(textColor);
     text_.setCharacterSize(charSize);
 
     button_.setPosition(buttonPosition);
     button_.setSize(buttonSize);
+    button_.setTexture(&frame_);
     normalSize_ = buttonSize;
-    increasedSize_ = {buttonSize * SIZE_COEFFICIENT};
+    increasedSize_ = buttonSize * SIZE_COEFFICIENT;
 
     text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
-                      button_.getPosition().y + button_.getSize().y / 2 - text_.getLocalBounds().height / 2);
+                      button_.getPosition().y + text_.getLocalBounds().height / 2);
 
 }
 
-[[maybe_unused]] void MainMenuButton::SetFont(const sf::Font& font) noexcept {
-    text_.setFont(font);
-}
 
-[[maybe_unused]] void MainMenuButton::SetColor(const sf::Color& color) noexcept {
-    button_.setFillColor(color);
-}
-
-[[maybe_unused]] void MainMenuButton::SetPosition(const sf::Vector2<float>& newPosition) noexcept {
-    button_.setPosition(newPosition);
-}
 
 [[maybe_unused]] void MainMenuButton::MagnifyingAnimation() noexcept {
-    if (button_.getSize() == increasedSize_){
+    if (isMagnifying){
         return;
     }
     sf::Vector2<float> difference = increasedSize_ - button_.getSize();
@@ -42,11 +34,12 @@
                         button_.getPosition().y - difference.y / 2);
     text_.setCharacterSize(increasedCharSize_);
     text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
-                      button_.getPosition().y + button_.getSize().y / 2 - text_.getLocalBounds().height / 2);
+                      button_.getPosition().y + text_.getLocalBounds().height / 2);
+    isMagnifying = true;
 }
 
 [[maybe_unused]] void MainMenuButton::ShrinkingAnimation() noexcept {
-    if (button_.getSize() == normalSize_) {
+    if (!isMagnifying) {
         return;
     }
     sf::Vector2<float> difference = button_.getSize() - normalSize_;
@@ -55,7 +48,8 @@
                         button_.getPosition().y + difference.y / 2);
     text_.setCharacterSize(normalCharSize_);
     text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
-                      button_.getPosition().y + button_.getSize().y / 2 - text_.getLocalBounds().height / 2);
+                      button_.getPosition().y + text_.getLocalBounds().height / 2);
+    isMagnifying = false;
 }
 
 [[maybe_unused]] void MainMenuButton::Draw(sf::RenderWindow& window) const noexcept {
@@ -65,9 +59,6 @@
 
 
 
-[[maybe_unused]] void MainMenuButton::SetSize(const sf::Vector2<float>& newSize) noexcept {
-    button_.setSize(newSize);
-}
 
 [[maybe_unused]] auto MainMenuButton::IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
     if (sf::Mouse::getPosition(window).x < button_.getPosition().x + button_.getLocalBounds().width &&

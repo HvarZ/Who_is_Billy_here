@@ -3,13 +3,13 @@
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Who's Billy here!", sf::Style::Fullscreen);
-    MainMenuButton button("New game", {200, 100}, {400, 200});
+    MainMenuButton button("New game", {500, 500}, {490, 105});
     sf::Font font;
     font.loadFromFile("../fonts/Pixelio_true.otf");
     sf::Text testText("Hello, I im Billy", font);
     testText.setFillColor(sf::Color::White);
     testText.setCharacterSize(50);
-    testText.setPosition(static_cast<float>(window.getSize().x) / 2 - (testText.getLocalBounds().width / 2),
+    testText.setPosition(static_cast<float>(window.getSize().x) / 1.5f - (testText.getLocalBounds().width / 2),
                          static_cast<float>(window.getSize().y) / 2 - testText.getLocalBounds().height / 2);
 
     while (window.isOpen()) {
