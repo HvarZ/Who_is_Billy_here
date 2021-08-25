@@ -25,9 +25,9 @@ private:
     bool isMagnifying = false;
 public:
     // Constructors
-    MainMenuButton() = default;
+    MainMenuButton() = delete;
     [[maybe_unused]] explicit MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
-           const sf::Vector2<float>& buttonSize, const sf::Color& textColor = sf::Color::White,
+           const sf::Vector2<float>& buttonSize = {490, 105}, const sf::Color& textColor = sf::Color::White,
            unsigned int charSize = 50);
 
     // Methods

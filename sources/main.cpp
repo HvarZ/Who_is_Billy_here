@@ -1,9 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include "main_menu_button.h"
+#include "main_menu.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Who's Billy here!", sf::Style::Fullscreen);
-    MainMenuButton button("New game", {500, 500}, {490, 105});
+
+    MainMenu menu;
     sf::Font font;
     font.loadFromFile("../fonts/Pixelio_true.otf");
     sf::Text testText("Hello, I im Billy", font);
@@ -18,17 +20,13 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::MouseMoved) {
-                if (button.IsOverMouse(window)) {
-                    button.MagnifyingAnimation();
-                } else {
-                    button.ShrinkingAnimation();
-                }
+
             }
         }
 
         window.clear();
         window.draw(testText);
-        button.Draw(window);
+        menu.DrawButtons(window);
         window.display();
     }
 

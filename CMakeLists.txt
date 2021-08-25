@@ -6,10 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(SOURCES
         sources/main.cpp
         sources/main_menu_button.cpp
+        sources/main_menu.cpp
         )
 
 set(HEADERS
         include/main_menu_button.h
+        include/main_menu.h
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
