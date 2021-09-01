@@ -30,6 +30,7 @@ public:
     void DrawMainAnimation(sf::RenderWindow& window) const noexcept;
     void Draw(sf::RenderWindow& window) const noexcept;
     void MagnifyButton(sf::RenderWindow& window) noexcept;
+    void Exit(sf::RenderWindow &window, sf::Event& event) const noexcept;
 };
 
 #endif //WHO_IS_BILLY_HERE_MAIN_MENU_H

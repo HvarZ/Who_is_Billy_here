@@ -61,11 +61,12 @@
 
 
 [[maybe_unused]] auto MainMenuButton::IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
-    if (sf::Mouse::getPosition(window).x < button_.getPosition().x + button_.getLocalBounds().width &&
+    return (sf::Mouse::getPosition(window).x < button_.getPosition().x + button_.getLocalBounds().width &&
         sf::Mouse::getPosition(window).x > button_.getPosition().x &&
         sf::Mouse::getPosition(window).y < button_.getPosition().y + button_.getLocalBounds().height &&
-        sf::Mouse::getPosition(window).y > button_.getPosition().y) {
-        return true;
-    }
-    return false;
+        sf::Mouse::getPosition(window).y > button_.getPosition().y);
+}
+
+[[maybe_unused]] auto MainMenuButton::IsPressed(sf::RenderWindow &window, sf::Event& event) const noexcept -> bool {
+    return IsOverMouse(window) && event.type == sf::Event::MouseButtonPressed;
 }

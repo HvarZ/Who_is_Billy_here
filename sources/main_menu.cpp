@@ -36,6 +36,13 @@ void MainMenu::MagnifyButton(sf::RenderWindow& window) noexcept {
     }
 }
 
+
 void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
+}
+
+void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
+    if (buttons_[4].IsPressed(window, event)) {
+        window.close();
+    }
 }
