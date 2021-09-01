@@ -12,6 +12,7 @@ set(SOURCES
 set(HEADERS
         include/main_menu_button.h
         include/main_menu.h
+        include/message.h
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)

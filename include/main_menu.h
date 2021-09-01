@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <array>
-#include <main_menu_button.h>
 #include <string>
+
+#include <message.h>
+#include <main_menu_button.h>
 
 #include <SFML/Graphics.hpp>
 
