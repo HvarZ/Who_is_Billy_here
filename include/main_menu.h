@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <main_menu_button.h>
+#include <string>
 
 #include <SFML/Graphics.hpp>
 
@@ -13,6 +14,8 @@
 
 class MainMenu final {
 private:
+    sf::Text nameGame_;
+    sf::Font fontNameGame_;
     std::vector<MainMenuButton> buttons_;
     sf::Texture background_;
 
@@ -25,7 +28,7 @@ public:
     MainMenu() noexcept;
 
     void DrawMainAnimation(sf::RenderWindow& window) const noexcept;
-    void DrawButtons(sf::RenderWindow& window) const noexcept;
+    void Draw(sf::RenderWindow& window) const noexcept;
     void MagnifyButton(sf::RenderWindow& window) noexcept;
 };
 
