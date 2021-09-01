@@ -8,8 +8,29 @@
 
 #include <SFML/Graphics.hpp>
 
-#define NUMBER_BUTTONS 5
-#define X_POSITION_BUTTONS 500
+
+namespace MainMenuSettings {
+    const std::array<std::string, 5> buttonsNames_ = {"New game", "Load",
+                                                      "Leaderboard", "Titles", "Exit"};
+
+    const int X_POSITION_BUTTONS = 500;
+    const int NUMBER_BUTTONS = 5;
+    const float ANGLE_NAME_GAME = -45.f;
+    const float X_POSITION_NAME_GAME = 1920.f;
+    const float Y_POSITION_NAME_GAME = 1080.f;
+    const int START_POSITION_FOR_FIRST_BUTTON = 500.f;
+    const int STEP_BETWEEN_BUTTONS = 200.f;
+    const unsigned int CHAR_SIZE = 80;
+    const std::string NAME_GAME = "Who's Billy here?";
+}
+
+enum ButtonNames {
+    NewGame = 0,
+    Load = 1,
+    Leaderboard = 2,
+    Titles = 3,
+    Exit = 4
+};
 
 
 class MainMenu final {
@@ -19,10 +40,6 @@ private:
     std::vector<MainMenuButton> buttons_;
     sf::Texture background_;
 
-    MainMenuButton newGameButton_{"New game", {500, 500}};
-
-    const std::array<std::string, 5> buttonsNames_ = {"New game", "Load",
-                                                      "Leaderboard", "Titles", "Exit"};
 
 public:
     MainMenu() noexcept;

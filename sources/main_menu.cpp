@@ -3,15 +3,17 @@
 MainMenu::MainMenu() noexcept {
     fontNameGame_.loadFromFile("../fonts/Pixelio_true.otf");
     nameGame_.setFont(fontNameGame_);
-    nameGame_.setString("Who's Billy here?");
-    nameGame_.setRotation(-45);
-    nameGame_.setPosition(1920, 1080);
-    nameGame_.setCharacterSize(50);
+    nameGame_.setString(MainMenuSettings::NAME_GAME);
+    nameGame_.setRotation(MainMenuSettings::ANGLE_NAME_GAME);
+    nameGame_.setPosition(MainMenuSettings::X_POSITION_NAME_GAME, MainMenuSettings::Y_POSITION_NAME_GAME);
+    nameGame_.setCharacterSize(MainMenuSettings::CHAR_SIZE);
 
-    buttons_.reserve(NUMBER_BUTTONS);
-    for (int yPosition = 500, i = 0; i < NUMBER_BUTTONS; ++i, yPosition += 200) {
-        buttons_.emplace_back(buttonsNames_[i],
-                  sf::Vector2f{X_POSITION_BUTTONS, static_cast<float>(yPosition)});
+    buttons_.reserve(MainMenuSettings::NUMBER_BUTTONS);
+    for (int yPosition = MainMenuSettings::START_POSITION_FOR_FIRST_BUTTON, i = 0;
+         i < MainMenuSettings::NUMBER_BUTTONS;
+        ++i, yPosition += MainMenuSettings::STEP_BETWEEN_BUTTONS) {
+        buttons_.emplace_back(MainMenuSettings::buttonsNames_[i],
+                  sf::Vector2f{MainMenuSettings::X_POSITION_BUTTONS, static_cast<float>(yPosition)});
     }
 }
 
@@ -42,7 +44,7 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 }
 
 void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
-    if (buttons_[4].IsPressed(window, event)) {
+    if (buttons_[ButtonNames::Exit].IsPressed(window, event)) {
         window.close();
     }
 }
