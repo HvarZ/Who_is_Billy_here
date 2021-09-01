@@ -6,7 +6,13 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 
-#define SIZE_COEFFICIENT 1.2f
+
+namespace ButtonSettings {
+    const float SIZE_COEFFICIENT = 1.2f;
+    const unsigned int CHAR_SIZE = 50;
+    const unsigned int INCREASED_CHAR_SIZE = 60;
+    const sf::Vector2<float> BUTTON_SIZE(490, 105);
+}
 
 class MainMenuButton final {
 private:
@@ -19,16 +25,13 @@ private:
     sf::Vector2<float> increasedSize_;
     sf::Vector2<float> normalSize_;
 
-    const unsigned int increasedCharSize_ = 60;
-    const unsigned int normalCharSize_ = 50;
-
     bool isMagnifying = false;
 public:
     // Constructors
     MainMenuButton() = delete;
     [[maybe_unused]] explicit MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
-           const sf::Vector2<float>& buttonSize = {490, 105}, const sf::Color& textColor = sf::Color::White,
-           unsigned int charSize = 50);
+           const sf::Vector2<float>& buttonSize = ButtonSettings::BUTTON_SIZE, const sf::Color& textColor = sf::Color::White,
+           unsigned int charSize = ButtonSettings::CHAR_SIZE);
 
     // Methods
     [[maybe_unused]] void MagnifyingAnimation() noexcept;

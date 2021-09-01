@@ -15,7 +15,7 @@
     button_.setSize(buttonSize);
     button_.setTexture(&frame_);
     normalSize_ = buttonSize;
-    increasedSize_ = buttonSize * SIZE_COEFFICIENT;
+    increasedSize_ = buttonSize * ButtonSettings::SIZE_COEFFICIENT;
 
     text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
                       button_.getPosition().y + text_.getLocalBounds().height / 2);
@@ -32,7 +32,7 @@
     button_.setSize(increasedSize_);
     button_.setPosition(button_.getPosition().x - difference.x / 2,
                         button_.getPosition().y - difference.y / 2);
-    text_.setCharacterSize(increasedCharSize_);
+    text_.setCharacterSize(ButtonSettings::INCREASED_CHAR_SIZE);
     text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
                       button_.getPosition().y + text_.getLocalBounds().height / 2);
     isMagnifying = true;
@@ -46,7 +46,7 @@
     button_.setSize(normalSize_);
     button_.setPosition(button_.getPosition().x + difference.x / 2,
                         button_.getPosition().y + difference.y / 2);
-    text_.setCharacterSize(normalCharSize_);
+    text_.setCharacterSize(ButtonSettings::CHAR_SIZE);
     text_.setPosition(button_.getPosition().x + button_.getSize().x / 2 - text_.getLocalBounds().width / 2,
                       button_.getPosition().y + text_.getLocalBounds().height / 2);
     isMagnifying = false;
