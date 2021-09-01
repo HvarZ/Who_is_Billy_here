@@ -35,6 +35,7 @@ public:
     [[maybe_unused]] void ShrinkingAnimation() noexcept;
     [[maybe_unused]] void Draw(sf::RenderWindow& window) const noexcept;
     [[maybe_unused]] auto IsOverMouse(sf::RenderWindow& window) const noexcept -> bool;
+    [[maybe_unused]] auto IsPressed(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
 };
 
 #endif //WHO_IS_BILLY_HERE_MAIN_MENU_BUTTON_H
