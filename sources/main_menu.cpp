@@ -1,4 +1,6 @@
 #include <main_menu.h>
+#include <message.h>
+
 
 MainMenu::MainMenu() noexcept {
     fontNameGame_.loadFromFile("../fonts/Pixelio_true.otf");
@@ -45,6 +47,13 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
     if (buttons_[ButtonNames::Exit].IsPressed(window, event)) {
-        window.close();
+        Message message("Are you sure about that?");
+        sf::Event click{};
+        while (window.waitEvent(click)) {
+            message.Draw(window);
+            if (message.IsPressedYes(click)) {
+                window.close();
+            }
+        }
     }
 }

@@ -2,23 +2,25 @@
 #define WHO_IS_BILLY_HERE_MESSAGE_H
 
 #include <main_menu_button.h>
+#include <vector>
+#include <SFML/Graphics.hpp>
 
 class Message final {
 private:
-    sf::RenderWindow window_;
+    std::vector<MainMenuButton> buttons_;
 
-    MainMenuButton yesButton_;
-    MainMenuButton noButton_;
-
+    sf::Font font_;
     sf::Text question_;
 
+    bool isOpen_ = false;
 public:
     Message() = delete;
     explicit Message(const std::string& question) noexcept;
     void Draw(sf::RenderWindow& window) noexcept;
 
-    auto IsPressedYes() const noexcept -> bool;
-    auto IsPressedNo() const noexcept -> bool;
+    auto IsOpen() const noexcept -> bool;
+    auto IsPressedYes(sf::Event& event) const noexcept -> bool;
+    auto IsPressedNo(sf::Event& event) const noexcept -> bool;
 
 };
 

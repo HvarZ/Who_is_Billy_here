@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include "main_menu_button.h"
 #include "main_menu.h"
 
 int main() {
