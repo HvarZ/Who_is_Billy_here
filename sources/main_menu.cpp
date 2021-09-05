@@ -50,10 +50,10 @@ void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
         Message message("Are you sure about that?");
         sf::Event click{};
         while (window.waitEvent(click)) {
-            message.Draw(window);
             if (message.IsPressedYes(click)) {
                 window.close();
             }
+            message.Draw(window);
         }
     }
 }
