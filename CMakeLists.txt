@@ -7,6 +7,7 @@ set(SOURCES
         sources/main.cpp
         sources/main_menu_button.cpp
         sources/main_menu.cpp
+        sources/message.cpp
         )
 
 set(HEADERS
