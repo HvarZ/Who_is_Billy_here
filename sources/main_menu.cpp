@@ -47,11 +47,18 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
     if (buttons_[ButtonNames::Exit].IsPressed(window, event)) {
-        Message message("Are you sure about that?");
+        Message message(window, "Are you sure about that?");
         sf::Event click{};
         while (window.waitEvent(click)) {
-            if (message.IsPressedYes(click)) {
+            if (message.IsPressedYes(window, click)) {
                 window.close();
+            }
+            if (message.IsPressedNo(window, click)) {
+
+                break;
+            }
+            if (event.type == sf::Event::MouseMoved) {
+                message.MagnifyButton(window);
             }
             message.Draw(window);
         }
