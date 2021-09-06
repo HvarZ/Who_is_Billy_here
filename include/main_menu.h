@@ -49,6 +49,7 @@ public:
     void DrawMainAnimation(sf::RenderWindow& window) const noexcept;
     void Draw(sf::RenderWindow& window) const noexcept;
     void MagnifyButton(sf::RenderWindow& window) noexcept;
+    void Title(sf::RenderWindow& window, sf::Event& event) const noexcept;
     void Exit(sf::RenderWindow &window, sf::Event& event) const noexcept;
 };
 

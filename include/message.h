@@ -23,8 +23,6 @@ public:
     auto IsOpen() const noexcept -> bool;
     auto IsPressedYes(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
     auto IsPressedNo(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
-    auto IsNavigatedYes(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
-    auto IsNavigatedNo(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
     void MagnifyButton(sf::RenderWindow& window) noexcept;
 };
 

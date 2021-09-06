@@ -1,5 +1,6 @@
 #include <main_menu.h>
 #include <message.h>
+#include <titles.h>
 
 
 MainMenu::MainMenu() noexcept {
