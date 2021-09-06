@@ -15,6 +15,7 @@ int main() {
                 menu.MagnifyButton(window);
             }
             if (event.type == sf::Event::MouseButtonPressed) {
+                menu.Title(window, event);
                 menu.Exit(window, event);
             }
         }

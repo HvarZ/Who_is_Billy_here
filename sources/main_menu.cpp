@@ -46,6 +46,28 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 }
 
+
+void MainMenu::Title(sf::RenderWindow& window, sf::Event& event) const noexcept {
+    if (buttons_[ButtonNames::Titles].IsPressed(window, event)) {
+        class Titles titles(window);
+        while (titles.IsOpen()) {
+            sf::Event click{};
+            while (window.pollEvent(click)) {
+                if (titles.IsPressedBack(window, click)) {
+                    titles.Close();
+                    break;
+                }
+                if (click.type == sf::Event::MouseMoved) {
+                    titles.MagnifyingButton(window);
+                }
+            }
+            window.clear();
+            titles.Draw(window);
+            window.display();
+        }
+    }
+}
+
 void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
     if (buttons_[ButtonNames::Exit].IsPressed(window, event)) {
         Message message(window, "Are you sure about that?");
