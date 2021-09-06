@@ -59,7 +59,7 @@ void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
                     message.Close();
                     break;
                 }
-                if (event.type == sf::Event::MouseMoved) {
+                if (click.type == sf::Event::MouseMoved) {
                     message.MagnifyButton(window);
                 }
             }
