@@ -20,12 +20,10 @@ Message::Message(sf::RenderWindow& window, const std::string &question) noexcept
 }
 
 void Message::Draw(sf::RenderWindow& window) noexcept {
-    window.clear();
     window.draw(question_);
     for (const auto& button : buttons_) {
         button.Draw(window);
     }
-    window.display();
 }
 
 void Message::Close() noexcept {
@@ -40,13 +38,6 @@ auto Message::IsPressedNo(sf::RenderWindow &window, sf::Event &event) const noex
     return event.type == sf::Event::MouseButtonPressed && buttons_[1].IsOverMouse(window);
 }
 
-auto Message::IsNavigatedYes(sf::RenderWindow &window, sf::Event &event) const noexcept -> bool {
-    return buttons_[0].IsOverMouse(window);
-}
-
-auto Message::IsNavigatedNo(sf::RenderWindow &window, sf::Event &event) const noexcept -> bool {
-    return buttons_[1].IsOverMouse(window);
-}
 
 void Message::MagnifyButton(sf::RenderWindow &window) noexcept {
     for (auto& button : buttons_) {
