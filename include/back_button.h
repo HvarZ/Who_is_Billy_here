@@ -2,14 +2,14 @@
 #define WHO_IS_BILLY_HERE_BACK_BUTTON_H
 
 #include <main_menu_button.h>
+#include <memory>
 
 class BackButton final {
 private:
-    MainMenuButton backButton_;
+    std::unique_ptr<MainMenuButton> backButton_;
 
 public:
-    BackButton() = delete;
-    explicit BackButton(sf::RenderWindow& window);
+    BackButton();
 
     auto IsPressed(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
     void Magnifying(sf::RenderWindow& window);

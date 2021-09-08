@@ -2,6 +2,7 @@
 #include <message.h>
 #include <titles.h>
 #include <textbox.h>
+#include <back_button.h>
 
 
 MainMenu::MainMenu() noexcept {
@@ -50,15 +51,24 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcept {
     if (buttons_[ButtonNames::NewGame].IsPressed(window, event)) {
-        class TextBox textBox(window, "Enter your nickname");
+        TextBox textBox(window, "Enter your nickname");
+        BackButton backButton;
         while (textBox.IsOpen()) {
             sf::Event enteringText{};
             while (window.pollEvent(enteringText)) {
                 if (enteringText.type == sf::Event::TextEntered) {
                     textBox.EnterText(enteringText);
                 }
+                if (backButton.IsPressed(window, enteringText)) {
+                    textBox.Close();
+                    break;
+                }
+                if (enteringText.type == sf::Event::MouseMoved) {
+                    backButton.Magnifying(window);
+                }
             }
             window.clear();
+            backButton.Draw(window);
             textBox.Draw(window);
             window.display();
         }
