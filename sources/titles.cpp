@@ -1,7 +1,7 @@
 #include <titles.h>
 
 Titles::Titles(sf::RenderWindow& window) :
-    backButton_(new BackButton(window)), window_(&window), isOpen_(true) {
+    backButton_(new BackButton), window_(&window), isOpen_(true) {
     font_.loadFromFile("../fonts/Pixelio_true.otf");
     text_.setFont(font_);
     text_.setString("Main artist - Another One \nMian programmer - KaparZo ");
@@ -32,6 +32,3 @@ auto Titles::GetBackButton() const noexcept -> BackButton& {
 }
 
 
-Titles::~Titles() {
-    delete backButton_;
-}
