@@ -9,6 +9,7 @@ set(SOURCES
         sources/main_menu.cpp
         sources/message.cpp
         sources/titles.cpp
+        sources/textbox.cpp
         )
 
 set(HEADERS
@@ -16,6 +17,7 @@ set(HEADERS
         include/main_menu.h
         include/message.h
         include/titles.h
+        include/textbox.h
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)

@@ -1,6 +1,7 @@
 #include <main_menu.h>
 #include <message.h>
 #include <titles.h>
+#include <textbox.h>
 
 
 MainMenu::MainMenu() noexcept {
@@ -44,6 +45,24 @@ void MainMenu::MagnifyButton(sf::RenderWindow& window) noexcept {
 
 void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
+}
+
+
+void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcept {
+    if (buttons_[ButtonNames::NewGame].IsPressed(window, event)) {
+        class TextBox textBox;
+        while (textBox.IsOpen()) {
+            sf::Event enteringText{};
+            while (window.pollEvent(enteringText)) {
+                if (enteringText.type == sf::Event::TextEntered) {
+                    textBox.EnterText(enteringText);
+                }
+            }
+            window.clear();
+            textBox.Draw(window);
+            window.display();
+        }
+    }
 }
 
 
@@ -92,3 +111,4 @@ void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
         }
     }
 }
+

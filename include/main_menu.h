@@ -7,6 +7,7 @@
 
 #include <message.h>
 #include <main_menu_button.h>
+#include <textbox.h>
 
 #include <SFML/Graphics.hpp>
 
@@ -49,6 +50,7 @@ public:
     void DrawMainAnimation(sf::RenderWindow& window) const noexcept;
     void Draw(sf::RenderWindow& window) const noexcept;
     void MagnifyButton(sf::RenderWindow& window) noexcept;
+    void NewGame(sf::RenderWindow& window, sf::Event& event) const noexcept;
     void Title(sf::RenderWindow& window, sf::Event& event) const noexcept;
     void Exit(sf::RenderWindow &window, sf::Event& event) const noexcept;
 };
