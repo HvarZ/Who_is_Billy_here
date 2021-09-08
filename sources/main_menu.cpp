@@ -50,7 +50,7 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcept {
     if (buttons_[ButtonNames::NewGame].IsPressed(window, event)) {
-        class TextBox textBox;
+        class TextBox textBox(window, "Enter your nickname");
         while (textBox.IsOpen()) {
             sf::Event enteringText{};
             while (window.pollEvent(enteringText)) {

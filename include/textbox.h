@@ -17,6 +17,9 @@ namespace Keys {
 
 class TextBox final {
 private:
+    sf::RenderWindow* window_;
+
+    sf::Text comment_;
     sf::Text textBox_;
     std::ostringstream text_;
 
@@ -24,12 +27,14 @@ private:
     sf::RectangleShape frame_;
     sf::Texture texture_;
 
-    const int limit_ = 20;
+    int limit_;
+    float textBoxAdaptedSize_ = 0.f;
 
     bool isOpen_ = false;
 
 public:
-    TextBox();
+    TextBox() = delete;
+    explicit TextBox(sf::RenderWindow& window, const std::string& comment, int limit = 18);
 
     auto IsOpen() const noexcept -> bool;
 
