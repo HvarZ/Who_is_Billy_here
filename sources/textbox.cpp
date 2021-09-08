@@ -34,9 +34,11 @@ void TextBox::DeleteLastChar() {
     auto text = text_.str();
     std::string newText;
 
-    std::copy(text.begin(), std::prev(text.end()), newText.begin());
+    for (size_t i = 0; i < text.length() - 1; ++i) {
+        newText += text[i];
+    }
 
-    text_.clear();
+    text_.str("");
     text_ << newText;
 
     textBox_.setString(text_.str());
@@ -50,10 +52,10 @@ void TextBox::Draw(sf::RenderWindow &window) const noexcept {
 void TextBox::EnterText(sf::Event &event) {
     int charTyped = event.text.unicode;
     if (charTyped < 128) {
-        if (text_.str().length() <= limit_) {
+        if (text_.str().length() < limit_) {
             InputLogic(charTyped);
         }
-        else if (charTyped >= limit_ && charTyped == Keys::DELETE) {
+        else if (charTyped == Keys::DELETE) {
             DeleteLastChar();
         }
     }
