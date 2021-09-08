@@ -1,10 +1,10 @@
 #include "main_menu_button.h"
 
 [[maybe_unused]] MainMenuButton::MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
-               const sf::Vector2<float>& buttonSize, const sf::Color& textColor,
+               const sf::Vector2<float>& buttonSize, const std::string& fileName, const sf::Color& textColor,
                unsigned int charSize) : isMagnifying(false) {
     font_.loadFromFile("../fonts/Pixelio_true.otf");
-    frame_.loadFromFile("../textures/main_menu_textures/frame_black_background.png");
+    frame_.loadFromFile(fileName);
 
     text_.setString(text);
     text_.setFont(font_);
@@ -21,6 +21,7 @@
                       button_.getPosition().y + text_.getLocalBounds().height / 2);
 
 }
+
 
 
 
@@ -70,3 +71,4 @@
 [[maybe_unused]] auto MainMenuButton::IsPressed(sf::RenderWindow &window, sf::Event& event) const noexcept -> bool {
     return IsOverMouse(window) && event.type == sf::Event::MouseButtonPressed;
 }
+

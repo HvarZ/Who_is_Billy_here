@@ -1,6 +1,8 @@
 #include <titles.h>
 
-Titles::Titles(sf::RenderWindow& window) : backButton_(new MainMenuButton("<-", sf::Vector2f(50, 50))),
+Titles::Titles(sf::RenderWindow& window) :
+    backButton_(new MainMenuButton("", sf::Vector2f(50, 50), sf::Vector2f(490, 105),
+                std::string("../textures/main_menu_textures/arrow.png"))),
                                             window_(&window),
                                             isOpen_(true){
     font_.loadFromFile("../fonts/Pixelio_true.otf");

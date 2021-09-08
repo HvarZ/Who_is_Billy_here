@@ -30,8 +30,9 @@ public:
     // Constructors
     MainMenuButton() = delete;
     [[maybe_unused]] explicit MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
-           const sf::Vector2<float>& buttonSize = ButtonSettings::BUTTON_SIZE, const sf::Color& textColor = sf::Color::White,
-           unsigned int charSize = ButtonSettings::CHAR_SIZE);
+           const sf::Vector2<float>& buttonSize = ButtonSettings::BUTTON_SIZE,
+           const std::string& fileName = "../textures/main_menu_textures/frame_black_background.png",
+           const sf::Color& textColor = sf::Color::White, unsigned int charSize = ButtonSettings::CHAR_SIZE);
 
     // Methods
     [[maybe_unused]] void MagnifyingAnimation() noexcept;
