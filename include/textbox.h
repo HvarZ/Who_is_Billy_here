@@ -37,6 +37,7 @@ public:
     explicit TextBox(sf::RenderWindow& window, const std::string& comment, int limit = 18);
 
     auto IsOpen() const noexcept -> bool;
+    void Close() noexcept;
 
     void Draw(sf::RenderWindow& window) const noexcept;
     void EnterText(sf::Event& event);

@@ -86,3 +86,7 @@ void TextBox::EnterText(sf::Event &event) {
 auto TextBox::IsOpen() const noexcept -> bool {
     return isOpen_;
 }
+
+void TextBox::Close() noexcept {
+    isOpen_ = false;
+}
