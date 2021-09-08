@@ -72,12 +72,12 @@ void MainMenu::Title(sf::RenderWindow& window, sf::Event& event) const noexcept 
         while (titles.IsOpen()) {
             sf::Event click{};
             while (window.pollEvent(click)) {
-                if (titles.IsPressedBack(window, click)) {
+                if (titles.GetBackButton().IsPressed(window, click)) {
                     titles.Close();
                     break;
                 }
                 if (click.type == sf::Event::MouseMoved) {
-                    titles.MagnifyingButton(window);
+                    titles.GetBackButton().Magnifying(window);
                 }
             }
             window.clear();

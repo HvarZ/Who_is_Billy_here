@@ -4,6 +4,7 @@
 int main() {
     sf::RenderWindow window(sf::VideoMode(1920, 1080),
                             "Who's Billy here!", sf::Style::Fullscreen);
+    window.setFramerateLimit(60);
     MainMenu menu;
 
     while (window.isOpen()) {

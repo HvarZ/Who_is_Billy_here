@@ -10,6 +10,7 @@ set(SOURCES
         sources/message.cpp
         sources/titles.cpp
         sources/textbox.cpp
+        sources/back_button.cpp
         )
 
 set(HEADERS
@@ -18,6 +19,7 @@ set(HEADERS
         include/message.h
         include/titles.h
         include/textbox.h
+        include/back_button.h
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
