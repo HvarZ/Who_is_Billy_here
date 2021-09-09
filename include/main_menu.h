@@ -8,6 +8,7 @@
 #include <message.h>
 #include <main_menu_button.h>
 #include <textbox.h>
+#include <single_game.h>
 
 #include <SFML/Graphics.hpp>
 

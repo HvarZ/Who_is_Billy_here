@@ -51,25 +51,23 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 
 void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcept {
     if (buttons_[ButtonNames::NewGame].IsPressed(window, event)) {
-        TextBox textBox(window, "Enter your nickname");
-        BackButton backButton;
-        while (textBox.IsOpen()) {
+        SingleGame game(window);
+        while (game.IsOpen()) {
             sf::Event enteringText{};
             while (window.pollEvent(enteringText)) {
                 if (enteringText.type == sf::Event::TextEntered) {
-                    textBox.EnterText(enteringText);
+                    game.GetTextBox().EnterText(enteringText);
                 }
-                if (backButton.IsPressed(window, enteringText)) {
-                    textBox.Close();
+                if (game.GetBackButton().IsPressed(window, enteringText)) {
+                    game.Close();
                     break;
                 }
                 if (enteringText.type == sf::Event::MouseMoved) {
-                    backButton.Magnifying(window);
+                    game.GetBackButton().Magnifying(window);
                 }
             }
             window.clear();
-            backButton.Draw(window);
-            textBox.Draw(window);
+            game.Draw(window);
             window.display();
         }
     }

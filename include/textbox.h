@@ -34,7 +34,7 @@ private:
 
 public:
     TextBox() = delete;
-    explicit TextBox(sf::RenderWindow& window, const std::string& comment, int limit = 18);
+    explicit TextBox(sf::RenderWindow& window, const std::string& comment = "", int limit = 18);
 
     auto IsOpen() const noexcept -> bool;
     void Close() noexcept;
