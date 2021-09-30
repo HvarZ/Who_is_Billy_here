@@ -52,27 +52,47 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcept {
     if (buttons_[ButtonNames::NewGame].IsPressed(window, event)) {
         SingleGame game(window);
-        while (game.IsOpen()) {
+        while (game.GetTextBox().IsOpen()) {
             sf::Event enteringText{};
             if (!game.GetTextBox().IsEntered()) {
                 while (window.pollEvent(enteringText)) {
                     if (enteringText.type == sf::Event::TextEntered) {
                         game.GetTextBox().EnterText(enteringText);
                     }
-                    if (game.GetBackButton().IsPressed(window, enteringText)) {
-                        game.Close();
+                    if (enteringText.type == sf::Event::KeyPressed && enteringText.key.code == sf::Keyboard::Enter) {
+                        game.GetTextBox().Close();
                         break;
+                    }
+
+                    if (game.GetBackButton().IsPressed(window, enteringText)) {
+                        return;
                     }
                     if (enteringText.type == sf::Event::MouseMoved) {
                         game.GetBackButton().Magnifying(window);
                     }
                 }
+                window.clear();
+                game.GetTextBox().Draw(window);
+                game.GetBackButton().Draw(window);
+                window.display();
             }
-            else {
-                game.Close();
+        }
+
+        Message message(window, "Hello, player", std::vector<std::string>{"Sure"});
+        while (message.IsOpen()) {
+            sf::Event click{};
+
+            while (window.pollEvent(click)) {
+                if (message.IsPressedYes(window, click)) {
+                    message.Close();
+                    return;
+                }
+                if (click.type == sf::Event::MouseMoved) {
+                    message.MagnifyButton(window);
+                }
             }
             window.clear();
-            game.Draw(window);
+            message.Draw(window);
             window.display();
         }
     }
