@@ -81,6 +81,9 @@ void TextBox::EnterText(sf::Event &event) {
         else if (charTyped == Keys::DELETE) {
             DeleteLastChar();
         }
+        else if (charTyped == Keys::ENTER) {
+            Close();
+        }
     }
 }
 
