@@ -102,7 +102,7 @@ void MainMenu::Title(sf::RenderWindow& window, sf::Event& event) const noexcept 
 
 void MainMenu::Exit(sf::RenderWindow &window, sf::Event& event) const noexcept {
     if (buttons_[ButtonNames::Exit].IsPressed(window, event)) {
-        Message message(window, "Are you sure about that?");
+        Message message(window, "Are you sure about that?", std::vector<std::string>{"Yes", "No"});
         while (message.IsOpen()) {
             sf::Event click{};
             while (window.pollEvent(click)) {

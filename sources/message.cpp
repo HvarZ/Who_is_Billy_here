@@ -2,7 +2,8 @@
 
 
 
-Message::Message(sf::RenderWindow& window, const std::string &question) noexcept : ptrWindow_(&window), isOpen_(true) {
+Message::Message(sf::RenderWindow& window, const std::string &question,
+                 const std::vector<std::string>& answers) noexcept : ptrWindow_(&window), isOpen_(true) {
     font_.loadFromFile("../fonts/Pixelio_true.otf");
     question_.setString(question);
     question_.setFont(font_);
@@ -10,13 +11,11 @@ Message::Message(sf::RenderWindow& window, const std::string &question) noexcept
     question_.setPosition(sf::Vector2f(static_cast<float>(ptrWindow_->getSize().x) / 2 - question_.getLocalBounds().width / 2 ,
                                        static_cast<float>(ptrWindow_->getSize().y) / 3 - question_.getLocalBounds().height / 2));
 
-    buttons_.reserve(2);
-    buttons_.emplace_back(std::string("Yes"),
-                          sf::Vector2f{static_cast<float>(ptrWindow_->getSize().x) / 3 - ButtonSettings::BUTTON_SIZE.x / 2,
-                                       2 * static_cast<float>(ptrWindow_->getSize().y) / 3});
-    buttons_.emplace_back(std::string("No"),
-                          sf::Vector2f{2 * static_cast<float>(ptrWindow_->getSize().x) / 3 - ButtonSettings::BUTTON_SIZE.x / 2,
-                                       2 * static_cast<float>(ptrWindow_->getSize().y) / 3});
+    buttons_.reserve(answers.size());
+    for (size_t i = 0; i < answers.size(); ++i) {
+        buttons_.emplace_back(answers[i], sf::Vector2f{static_cast<float>(i + 1) * static_cast<float>(ptrWindow_->getSize().x) / static_cast<float>(answers.size() + 1) - ButtonSettings::BUTTON_SIZE.x / 2,
+                                                       2 * static_cast<float>(ptrWindow_->getSize().y) / 3});
+    }
 }
 
 void Message::Draw(sf::RenderWindow& window) noexcept {

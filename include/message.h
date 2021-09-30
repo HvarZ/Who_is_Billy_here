@@ -16,7 +16,8 @@ private:
     bool isOpen_ = false;
 public:
     Message() = delete;
-    explicit Message(sf::RenderWindow& window, const std::string& question) noexcept;
+    explicit Message(sf::RenderWindow& window, const std::string& question,
+                     const std::vector<std::string>& answers) noexcept;
     void Draw(sf::RenderWindow& window) noexcept;
 
     void Close() noexcept;
