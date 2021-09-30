@@ -10,7 +10,7 @@ TextBox::TextBox(sf::RenderWindow& window, const std::string &comment, const int
     comment_.setFillColor(sf::Color::White);
 
     textBox_.setFont(font_);
-    textBox_.setCharacterSize(60);
+    textBox_.setCharacterSize(80);
     textBox_.setFillColor(sf::Color::White);
 
     texture_.loadFromFile("../textures/main_menu_textures/frame_black_background.png");
@@ -36,10 +36,11 @@ void TextBox::InputLogic(int charTyped) {
         textBox_.setPosition(frame_.getPosition().x + frame_.getSize().x / 2 - textBoxAdaptedSize_,
                              frame_.getPosition().y + 0.2f * frame_.getSize().y);
     }
-    else if (charTyped == Keys::DELETE) {
-        if (text_.str().length() > 0) {
-            DeleteLastChar();
-        }
+    else if (charTyped == Keys::DELETE && text_.str().length() > 0) {
+        DeleteLastChar();
+    }
+    else if (charTyped == Keys::ENTER && text_.str().length() > 3) {
+        isEntered_ = true;
     }
     textBox_.setString(text_.str() + "_");
     textBoxAdaptedSize_ = textBox_.getLocalBounds().width / 2;
@@ -85,6 +86,14 @@ void TextBox::EnterText(sf::Event &event) {
 
 auto TextBox::IsOpen() const noexcept -> bool {
     return isOpen_;
+}
+
+auto TextBox::IsEntered() const noexcept -> bool {
+    return isEntered_;
+}
+
+auto TextBox::GetString() const noexcept -> std::string {
+    return textBox_.getString();
 }
 
 void TextBox::Close() noexcept {

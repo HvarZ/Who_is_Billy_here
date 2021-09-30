@@ -3,6 +3,8 @@
 
 #include <textbox.h>
 #include <back_button.h>
+#include <timer.h>
+
 #include <memory>
 
 class SingleGame final {
@@ -21,7 +23,7 @@ public:
     void Draw(sf::RenderWindow& window);
     [[nodiscard]] auto GetBackButton() const noexcept -> BackButton&;
     [[nodiscard]] auto GetTextBox() const noexcept -> TextBox&;
-    auto IsOpen() const noexcept -> bool;
+    [[nodiscard]] auto IsOpen() const noexcept -> bool;
 
     void Close() noexcept;
 

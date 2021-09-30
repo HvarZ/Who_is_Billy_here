@@ -1,6 +1,6 @@
 #include <single_game.h>
 
-SingleGame::SingleGame(sf::RenderWindow &window) : textBoxNickname_(new TextBox(window)),
+SingleGame::SingleGame(sf::RenderWindow &window) : textBoxNickname_(new TextBox(window, "Enter you nickname")),
 backButton_(new BackButton), window_(&window), isOpen_(true) {}
 
 void SingleGame::Draw(sf::RenderWindow &window) {

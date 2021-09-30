@@ -54,17 +54,22 @@ void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcep
         SingleGame game(window);
         while (game.IsOpen()) {
             sf::Event enteringText{};
-            while (window.pollEvent(enteringText)) {
-                if (enteringText.type == sf::Event::TextEntered) {
-                    game.GetTextBox().EnterText(enteringText);
+            if (!game.GetTextBox().IsEntered()) {
+                while (window.pollEvent(enteringText)) {
+                    if (enteringText.type == sf::Event::TextEntered) {
+                        game.GetTextBox().EnterText(enteringText);
+                    }
+                    if (game.GetBackButton().IsPressed(window, enteringText)) {
+                        game.Close();
+                        break;
+                    }
+                    if (enteringText.type == sf::Event::MouseMoved) {
+                        game.GetBackButton().Magnifying(window);
+                    }
                 }
-                if (game.GetBackButton().IsPressed(window, enteringText)) {
-                    game.Close();
-                    break;
-                }
-                if (enteringText.type == sf::Event::MouseMoved) {
-                    game.GetBackButton().Magnifying(window);
-                }
+            }
+            else {
+                game.Close();
             }
             window.clear();
             game.Draw(window);

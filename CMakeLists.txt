@@ -11,6 +11,8 @@ set(SOURCES
         sources/titles.cpp
         sources/textbox.cpp
         sources/back_button.cpp
+        sources/timer.cpp
+        sources/single_game.cpp
         )
 
 set(HEADERS
@@ -20,6 +22,8 @@ set(HEADERS
         include/titles.h
         include/textbox.h
         include/back_button.h
+        include/timer.h
+        include/single_game.h
         )
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)

@@ -11,7 +11,7 @@
 
 namespace Keys {
     const int DELETE = 8;
-    const int ENTER = 13;
+    const int ENTER = 10;
     const int ESCAPE = 27;
 }
 
@@ -31,16 +31,19 @@ private:
     float textBoxAdaptedSize_ = 0.f;
 
     bool isOpen_ = false;
+    bool isEntered_ = false;
 
 public:
     TextBox() = delete;
     explicit TextBox(sf::RenderWindow& window, const std::string& comment = "", int limit = 18);
 
     auto IsOpen() const noexcept -> bool;
+    auto IsEntered() const noexcept -> bool;
     void Close() noexcept;
 
     void Draw(sf::RenderWindow& window) const noexcept;
     void EnterText(sf::Event& event);
+    auto GetString() const noexcept -> std::string;
 
 private:
     void InputLogic(int charTyped);
