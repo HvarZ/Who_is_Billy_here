@@ -1,8 +1,8 @@
 #include <main_menu.h>
 #include <message.h>
 #include <titles.h>
-#include <textbox.h>
-#include <back_button.h>
+
+#include <iostream>
 
 
 MainMenu::MainMenu() noexcept {
@@ -49,7 +49,7 @@ void MainMenu::DrawMainAnimation(sf::RenderWindow& window) const noexcept {
 }
 
 
-void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcept {
+void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) noexcept {
     if (buttons_[ButtonNames::NewGame].IsPressed(window, event)) {
         SingleGame game(window);
         while (game.GetTextBox().IsOpen()) {
@@ -78,7 +78,14 @@ void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) const noexcep
             }
         }
 
-        Message message(window, "Hello, player", std::vector<std::string>{"Sure"});
+        std::string stringHello = game.GetTextBox().GetString();
+        if (!stringHello.empty()) {
+          stringHello.pop_back();
+        } else {
+          stringHello = "SmartAss";
+        }
+        Message message(window, "Hello, " + stringHello + "!",
+                        std::vector<std::string>{"Sure"});
         while (message.IsOpen()) {
             sf::Event click{};
 

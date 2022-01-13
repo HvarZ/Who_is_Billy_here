@@ -24,6 +24,7 @@ public:
     [[nodiscard]] auto GetBackButton() const noexcept -> BackButton&;
     [[nodiscard]] auto GetTextBox() const noexcept -> TextBox&;
     [[nodiscard]] auto IsOpen() const noexcept -> bool;
+    void SetNickname() noexcept;
 
     void Close() noexcept;
 
