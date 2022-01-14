@@ -1,6 +1,6 @@
-#include "main_menu_button.h"
+#include "main_button.h"
 
-[[maybe_unused]] MainMenuButton::MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
+[[maybe_unused]] MainButton::MainButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
                const sf::Vector2<float>& buttonSize, const std::string& fileName, const sf::Color& textColor,
                unsigned int charSize) : isMagnifying(false) {
     font_.loadFromFile("../fonts/Pixelio_true.otf");
@@ -25,7 +25,7 @@
 
 
 
-[[maybe_unused]] void MainMenuButton::MagnifyingAnimation() noexcept {
+[[maybe_unused]] void MainButton::MagnifyingAnimation() noexcept {
     if (isMagnifying){
         return;
     }
@@ -39,7 +39,7 @@
     isMagnifying = true;
 }
 
-[[maybe_unused]] void MainMenuButton::ShrinkingAnimation() noexcept {
+[[maybe_unused]] void MainButton::ShrinkingAnimation() noexcept {
     if (!isMagnifying) {
         return;
     }
@@ -53,7 +53,7 @@
     isMagnifying = false;
 }
 
-[[maybe_unused]] void MainMenuButton::Draw(sf::RenderWindow& window) const noexcept {
+[[maybe_unused]] void MainButton::Draw(sf::RenderWindow& window) const noexcept {
     window.draw(button_);
     window.draw(text_);
 }
@@ -61,14 +61,14 @@
 
 
 
-[[maybe_unused]] auto MainMenuButton::IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
+[[maybe_unused]] auto MainButton::IsOverMouse(sf::RenderWindow& window) const noexcept -> bool {
     return (sf::Mouse::getPosition(window).x < button_.getPosition().x + button_.getLocalBounds().width &&
         sf::Mouse::getPosition(window).x > button_.getPosition().x &&
         sf::Mouse::getPosition(window).y < button_.getPosition().y + button_.getLocalBounds().height &&
         sf::Mouse::getPosition(window).y > button_.getPosition().y);
 }
 
-[[maybe_unused]] auto MainMenuButton::IsPressed(sf::RenderWindow &window, sf::Event& event) const noexcept -> bool {
+[[maybe_unused]] auto MainButton::IsPressed(sf::RenderWindow &window, sf::Event& event) const noexcept -> bool {
     return IsOverMouse(window) && event.type == sf::Event::MouseButtonPressed;
 }
 

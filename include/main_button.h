@@ -1,5 +1,5 @@
-#ifndef WHO_IS_BILLY_HERE_MAIN_MENU_BUTTON_H
-#define WHO_IS_BILLY_HERE_MAIN_MENU_BUTTON_H
+#ifndef WHO_IS_BILLY_HERE_MAIN_BUTTON_H
+#define WHO_IS_BILLY_HERE_MAIN_BUTTON_H
 
 #pragma once
 
@@ -14,7 +14,7 @@ namespace ButtonSettings {
     const sf::Vector2<float> BUTTON_SIZE(490, 105);
 }
 
-class MainMenuButton final {
+class MainButton final {
 private:
     sf::RectangleShape button_;
     sf::Text text_;
@@ -28,8 +28,8 @@ private:
     bool isMagnifying = false;
 public:
     // Constructors
-    MainMenuButton() = delete;
-    [[maybe_unused]] explicit MainMenuButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
+    MainButton() = delete;
+    [[maybe_unused]] explicit MainButton(const std::string& text, const sf::Vector2<float>& buttonPosition,
            const sf::Vector2<float>& buttonSize = ButtonSettings::BUTTON_SIZE,
            const std::string& fileName = "../textures/main_menu_textures/frame_black_background.png",
            const sf::Color& textColor = sf::Color::White, unsigned int charSize = ButtonSettings::CHAR_SIZE);
@@ -42,4 +42,4 @@ public:
     [[maybe_unused]] auto IsPressed(sf::RenderWindow& window, sf::Event& event) const noexcept -> bool;
 };
 
-#endif //WHO_IS_BILLY_HERE_MAIN_MENU_BUTTON_H
+#endif // WHO_IS_BILLY_HERE_MAIN_BUTTON_H

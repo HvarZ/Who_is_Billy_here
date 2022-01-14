@@ -1,12 +1,12 @@
 #ifndef WHO_IS_BILLY_HERE_BACK_BUTTON_H
 #define WHO_IS_BILLY_HERE_BACK_BUTTON_H
 
-#include <main_menu_button.h>
+#include <main_button.h>
 #include <memory>
 
 class BackButton final {
 private:
-    std::unique_ptr<MainMenuButton> backButton_;
+    std::unique_ptr<MainButton> backButton_;
 
 public:
     BackButton();

@@ -1,7 +1,7 @@
 #include <back_button.h>
 
 BackButton::BackButton() :
-backButton_(new MainMenuButton("", sf::Vector2f(50, 50), sf::Vector2f(490, 105),
+backButton_(new MainButton("", sf::Vector2f(50, 50), sf::Vector2f(490, 105),
                                std::string("../textures/main_menu_textures/arrow.png"))) {}
 
 

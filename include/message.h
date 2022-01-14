@@ -1,13 +1,13 @@
 #ifndef WHO_IS_BILLY_HERE_MESSAGE_H
 #define WHO_IS_BILLY_HERE_MESSAGE_H
 
-#include <main_menu_button.h>
-#include <vector>
 #include <SFML/Graphics.hpp>
+#include <main_button.h>
+#include <vector>
 
 class Message final {
 private:
-    std::vector<MainMenuButton> buttons_;
+    std::vector<MainButton> buttons_;
     sf::RenderWindow* ptrWindow_;
 
     sf::Font font_;
