@@ -4,8 +4,11 @@
 #include <textbox.h>
 #include <back_button.h>
 #include <timer.h>
+#include <gem.h>
+
 
 #include <memory>
+#include <vector>
 
 class SingleGame final {
 private:
@@ -14,19 +17,19 @@ private:
 
     sf::RenderWindow* window_;
 
+    std::vector<Gem> gems_;
     bool isOpen_ = false;
 
 public:
     SingleGame() = delete;
     explicit SingleGame(sf::RenderWindow& window);
 
-    void Draw(sf::RenderWindow& window);
+    void Draw();
     [[nodiscard]] auto GetBackButton() const noexcept -> BackButton&;
     [[nodiscard]] auto GetTextBox() const noexcept -> TextBox&;
     [[nodiscard]] auto IsOpen() const noexcept -> bool;
-    void SetNickname() noexcept;
 
-    void Close() noexcept;
+    void SetOpen(const bool open) noexcept;
 
 };
 
