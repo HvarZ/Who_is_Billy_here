@@ -5,10 +5,12 @@
 #include <array>
 #include <string>
 
+#include <main_button.h>
 #include <message.h>
-#include <main_menu_button.h>
-#include <textbox.h>
 #include <single_game.h>
+#include <textbox.h>
+
+#include <gem.h>
 
 #include <SFML/Graphics.hpp>
 
@@ -41,7 +43,7 @@ class MainMenu final {
 private:
     sf::Text nameGame_;
     sf::Font fontNameGame_;
-    std::vector<MainMenuButton> buttons_;
+    std::vector<MainButton> buttons_;
     sf::Texture background_;
 
 

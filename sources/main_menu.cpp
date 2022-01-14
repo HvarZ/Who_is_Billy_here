@@ -84,7 +84,7 @@ void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) noexcept {
         } else {
           stringHello = "SmartAss";
         }
-        Message message(window, "Hello, " + stringHello + "!",
+        Message message(window, "Are " + stringHello + " ready?",
                         std::vector<std::string>{"Sure"});
         while (message.IsOpen()) {
             sf::Event click{};
@@ -92,7 +92,6 @@ void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) noexcept {
             while (window.pollEvent(click)) {
                 if (message.IsPressedYes(window, click)) {
                     message.Close();
-                    return;
                 }
                 if (click.type == sf::Event::MouseMoved) {
                     message.MagnifyButton(window);
@@ -101,6 +100,18 @@ void MainMenu::NewGame(sf::RenderWindow &window, sf::Event &event) noexcept {
             window.clear();
             message.Draw(window);
             window.display();
+        }
+
+        while (game.IsOpen()) {
+          sf::Event click{};
+
+          while (window.pollEvent(click)) {
+
+          }
+
+          window.clear();
+          game.Draw();
+          window.display();
         }
     }
 }
